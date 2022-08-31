@@ -19,6 +19,17 @@
         /*background: url('../../Images/login-bg.jpeg') no-repeat center center fixed;*/
         background-size: cover;
     }
+    .noborder {
+        
+        border:none;
+        border-bottom:1px solid gray;
+    }
+    textarea:focus, input:focus {
+        outline: none;
+        border-bottom: 2px rgb(255 106 0) solid;
+        box-shadow: 1px 1px 4px 4px rgb(211 211 211);
+    }
+
 </style>
 <section class="vh-100">
     <div class="container-fluid h-custom">
@@ -44,7 +55,7 @@
                             Employee Id
                         </div>
                         <div class="form-outline mb-2">
-                            @Html.EditorFor(model => model.EMPLOYEE_ID, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Id here" } })
+                            @Html.TextBoxFor(model => model.EMPLOYEE_ID, new { @class = "col-12 noborder" })
                             @Html.ValidationMessageFor(model => model.EMPLOYEE_ID, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-outline mb-1">
@@ -52,15 +63,15 @@
                         </div>
                         <!-- Password input -->
                         <div class="form-outline mb-2">
-                            @Html.EditorFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Name here" } })
+                            @Html.TextBoxFor(model => model.NAME,new { @class = "col-12 noborder" })
                             @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-outline mb-1">
                             Password
                         </div>
                         <div class="form-outline mb-2">
-                            @Html.EditorFor(model => model.PWD, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Password here" } })
-                            @Html.ValidationMessageFor(model => model.PWD, "", new { @class = "text-danger" })
+                            @Html.PasswordFor(model => model.PWD,  new { @class = "col-12 noborder" })
+                            @Html.ValidationMessageFor(model => model.PWD, "", new { @class = "text-danger"})
                         </div>
                         <div class="d-flex justify-content-between align-items-center">
                             <!-- Checkbox -->

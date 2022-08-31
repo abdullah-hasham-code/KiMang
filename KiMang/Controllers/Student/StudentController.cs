@@ -8,10 +8,13 @@ using System.Web.Mvc;
 using PagedList.Mvc;
 using PagedList;
 
+
 namespace KiMang.Controllers.Student
 {
     public class StudentController : Controller
     {
+        
+
         KI_MANAGEMENT_SYSTEMEntities db = new KI_MANAGEMENT_SYSTEMEntities();
         Services.AuditLog auditLog = new Services.AuditLog();
         // GET: Student
@@ -24,6 +27,7 @@ namespace KiMang.Controllers.Student
                         select s;
 
             var StdRecords= db.STUDENTs.OrderBy(m => m.STUDENT_ID).ToPagedList(1, 20);
+            
             ViewData["student"] = StdRecords;
             ViewBag.TotalStdCount = StdRecords.TotalItemCount;
             ViewData["std_fees"] = db.STUDENT_FEE.OrderBy(m => m.STUDENT_ID).ToPagedList(1, 20);
@@ -36,6 +40,8 @@ namespace KiMang.Controllers.Student
         public ActionResult List()
         {
             var std = db.STUDENTs.ToList();
+
+            
             return PartialView(std);
         }
 
@@ -43,11 +49,24 @@ namespace KiMang.Controllers.Student
 
         public ActionResult Create()
         {
+
+            var gen = new List<string>() {"Select gender","Male","Female"};
             ViewBag.DEPARTMENTs = new SelectList(db.DEPARTMENTs.ToList(), "Dept_Id", "Dept_Desc");
             ViewBag.STUDENT_STATUS = new SelectList(db.STUDENT_STATUS.ToList(), "Status_Id", "Status_Desc");
-            ViewBag.YEAR = new SelectList(db.YEARs.ToList(), "Year_ID", "Year_Descr");
+            ViewBag.YEAR = new SelectList(db.YEARs.ToList(), "Year_Descr", "Year_Descr");
             ViewBag.CLASS = new SelectList(db.CLASSES.ToList(), "Class_ID", "Class_Desc");
-            return View ();
+            ViewBag.gender = gen;
+        
+
+
+            var StdId = db.STUDENTs.OrderByDescending(m => m.STUDENT_ID) .ToList();
+
+            ViewData["StdId"] = StdId[0].STUDENT_ID;
+            //ViewData["F.phone"] = StdId[5].FATHER_PHONE;
+            STUDENT obj = new STUDENT();
+            obj.STUDENT_ID= StdId[0].STUDENT_ID+1;
+           
+            return View(obj);
         }
 
         
@@ -59,17 +78,25 @@ namespace KiMang.Controllers.Student
                 STUDENT findClass = db.STUDENTs.Find(Convert.ToInt32(obj.STUDENT_ID),obj.YEAR);
                 ViewBag.DEPARTMENTs = new SelectList(db.DEPARTMENTs.ToList(), "Dept_Id", "Dept_Desc");
                 ViewBag.STUDENT_STATUS = new SelectList(db.STUDENT_STATUS.ToList(), "Status_Id", "Status_Desc");
-                ViewBag.YEAR = new SelectList(db.YEARs.ToList(), "Year_ID", "Year_Descr");
+                ViewBag.YEAR = new SelectList(db.YEARs.ToList(), "Year_Descr", "Year_Descr");
                 ViewBag.CLASS = new SelectList(db.CLASSES.ToList(), "Class_ID", "Class_Desc");
-
-
-                if (ModelState.IsValid && findClass==null )
+                var gen = new List<string>() { "Select gender", "Male", "Female" };
+                ViewBag.gender = gen;
+            if (ModelState.IsValid && findClass==null )
                 {
-                       db.STUDENTs.Add(obj);
-                        auditLog.InsertUserActivityLogs((Convert.ToInt32(Session["UserID"])).ToString(), Session["UserName"].ToString(), "Student", "Create", Session["UserType"].ToString(), "Create Student of Id"+obj.STUDENT_ID);
+                        db.STUDENTs.Add(obj);
+                        //auditLog.InsertUserActivityLogs((Convert.ToInt32(Session["UserID"])).ToString(), Session["UserName"].ToString(), "Student", "Create", Session["UserType"].ToString(), "Create Student of Id"+obj.STUDENT_ID);
                         db.SaveChanges();
-                       var query = from s in db.STUDENTs select s;
-                       return View();
+                        ModelState.Clear();
+                         ViewBag.Message = String.Format("Record has been save successfully!");
+
+                var StdId = db.STUDENTs.OrderByDescending(m => m.STUDENT_ID).ToList();
+
+                ViewData["StdId"] = StdId[0].STUDENT_ID;
+                STUDENT objStd = new STUDENT();
+                objStd.STUDENT_ID = StdId[0].STUDENT_ID + 1;
+                return View(objStd);
+          
                 
                 }
                 else
@@ -88,7 +115,8 @@ namespace KiMang.Controllers.Student
             ViewBag.STUDENT_STATUS = new SelectList(db.STUDENT_STATUS.ToList(), "Status_Id", "Status_Desc");
             ViewBag.YEAR = new SelectList(db.YEARs.ToList(), "Year_Descr", "Year_Descr");
             ViewBag.CLASS = new SelectList(db.CLASSES.ToList(), "Class_ID", "Class_Desc");
-
+            var gen = new List<string>() { "Select gender", "Male", "Female" };
+            ViewBag.gender = gen;
 
             STUDENT obj = db.STUDENTs.Find(Convert.ToInt32(id),year);
             if (obj == null)
@@ -108,7 +136,8 @@ namespace KiMang.Controllers.Student
             ViewBag.STUDENT_STATUS = new SelectList(db.STUDENT_STATUS.ToList(), "Status_Id", "Status_Desc");
             ViewBag.YEAR = new SelectList(db.YEARs.ToList(), "Year_Descr", "Year_Descr");
             ViewBag.CLASS = new SelectList(db.CLASSES.ToList(), "Class_ID", "Class_Desc");
-            
+            var gen = new List<string>() { "Select gender", "Male", "Female" };
+            ViewBag.gender = gen;
             if (ModelState.IsValid)
             {
 
@@ -120,7 +149,7 @@ namespace KiMang.Controllers.Student
                 db.Entry(obj).State = EntityState.Modified;
                 db.STUDENTs.Append(obj);
                 db.SaveChanges();
-                ModelState.AddModelError("", "Record has been udpated successfully!");
+                ModelState.AddModelError("","Record has been udpated successfully!");
             }
             //var query = from s in db.STUDENTs select s;
             return RedirectToAction("Student");

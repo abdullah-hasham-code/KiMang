@@ -1,6 +1,19 @@
 ﻿.container {
+    width:100%;
     background-color: white;
 }
+
+/*@media (min-width: 700px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1326px) {
+    .container {
+        max-width: 1240px;
+    }
+}*/
 
 .tabs {
     width: 100%;
@@ -48,6 +61,6 @@
     position: relative !important;
     z-index: 1 !important;
     border-top: 1px solid black;
-    padding: 20px;
+   /* padding: 20px;*/
     min-height: 40px;
 }

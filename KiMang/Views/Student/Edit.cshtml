@@ -24,7 +24,7 @@
 
                 <div class="d-flex">
                     @Html.LabelFor(model => model.STUDENT_ID, htmlAttributes: new { @class = "col-4" })
-                    @Html.EditorFor(model => model.STUDENT_ID, new { htmlAttributes = new { @class = " col-8" } })
+                    @Html.EditorFor(model => model.STUDENT_ID, new { htmlAttributes = new { @class = " col-8", @readonly = "readonly" } })
                 </div>
                 <div class="col-10">
                     @Html.ValidationMessageFor(model => model.STUDENT_ID, "", new { @class = "text-danger" })
@@ -62,7 +62,7 @@
             <div class="col">
                 <div class="d-flex">
                     @Html.LabelFor(model => model.FATHER_PHONE, htmlAttributes: new { @class = "col-4" })
-                    @Html.EditorFor(model => model.FATHER_PHONE, new { htmlAttributes = new { @class = "col-8" } })
+                    @Html.EditorFor(model => model.FATHER_PHONE, new { htmlAttributes = new { @class = "col-8"} })
                 </div>
                 <div class="col-md-10">
                     @Html.ValidationMessageFor(model => model.FATHER_PHONE, "", new { @class = "text-danger" })
@@ -89,7 +89,7 @@
 
                 <div class="d-flex">
                     @Html.LabelFor(model => model.GENDER, htmlAttributes: new { @class = "col-4" })
-                    @Html.EditorFor(model => model.GENDER, new { htmlAttributes = new { @class = "col-8" } })
+                    @Html.DropDownListFor(model => model.GENDER, new SelectList(ViewBag.gender), new { @class = "col-8 ts select" })
                 </div>
                 <div class="col-md-10">
                     @Html.ValidationMessageFor(model => model.GENDER, "", new { @class = "text-danger" })
@@ -147,7 +147,7 @@
 
                 <div class="d-flex">
                     @Html.LabelFor(model => model.YEAR, htmlAttributes: new { @class = "col-4" })
-                    @Html.DropDownList("YEAR", ViewBag.YEAR as IEnumerable<SelectListItem>, "Select YEAR", new { @class = "col-8 ts select" })
+                    @Html.DropDownList("YEAR", ViewBag.YEAR as IEnumerable<SelectListItem>, "Select YEAR", new { @class = "col-8 ts select", disabled = "disabled" })
                 </div>
                 <div class="col-md-10">
                     @Html.ValidationMessageFor(model => model.YEAR, "", new { @class = "text-danger" })
@@ -198,7 +198,7 @@
 
                 <div class="d-flex">
                     @Html.LabelFor(model => model.ADMISSION_DATE, htmlAttributes: new { @class = "col-4" })
-                    @Html.EditorFor(model => model.ADMISSION_DATE, new { htmlAttributes = new { @class = "col-8 datetimepicker1" } })
+                    @Html.EditorFor(model => model.ADMISSION_DATE,  new { @class = "col-8"} )
                 </div>
                 <div class="col-md-10">
                     @Html.ValidationMessageFor(model => model.ADMISSION_DATE, "", new { @class = "text-danger" })
@@ -248,8 +248,8 @@
 
 
         <div class="form-group" style="margin-top:10px">
-            <input type="submit" value="Create" class="btn btn-danger" />
-            <button class="btn btn-success  col-2" onclick="location.href='@Url.Action("Student","Student")'">BACK TO LIST</button>
+            <input type="submit" value="Save" class="btn btn-success" />
+            @Html.ActionLink("Back To List", "Student", null, new { @class = "btn btn-danger" })
         </div>
 
     </div>
@@ -257,4 +257,3 @@
 
 }
 
-]

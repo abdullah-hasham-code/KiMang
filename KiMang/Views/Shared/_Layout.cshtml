@@ -1,5 +1,5 @@
 ﻿<!doctype html>
-<html lang="en">
+<html lang="en" style="overflow-x: hidden;">
 <head>
     <title>KI MANGMENT SYSTEM</title>
     <meta charset="utf-8">
@@ -8,12 +8,17 @@
     <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/wwwroot/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+    @*<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.common-material.min.css" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.material.min.css" />*@
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.material.mobile.min.css" />
+
 </head>
 <body>
     <div class="wrapper d-flex align-items-stretch">
-        <nav id="sidebar">
+        <nav id="sidebar" class="pre-scrollable2 scrollbar">
             <div class="p-4">
-                <h1><a href=@Url.Action("Dashboard", "Dashboard") class="logo">Knowledge Inn CLC Center </a></h1>
+                <h1><a href=@Url.Action("Dashboard", "Dashboard") class="logo">Knowledge Inn <span> CLC Center </span></a></h1>
                 <ul class="list-unstyled components mb-5">
                     <li>
                         <a href="#std" data-toggle="collapse" aria-expanded="false">
@@ -157,11 +162,11 @@
 
                 <div class="footer">
                     <p>-->
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        <!--Copyright &copy;
-                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>-->
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    <!--</p>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                <!--Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>-->
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                <!--</p>
                 </div>-->
 
             </div>
@@ -179,33 +184,41 @@
                         <a class="nav-link" href="#">FAQs</a>
                     </div>
                     <div class="nav-item">
-                        <a class="nav-link" href="#">Log out</a>
+                        <a class="nav-link" href="@Url.Action("Login", "Login")">Log out</a>
                     </div>
                 </div>
             </div>
             @*<ul class="nav justify-content-end">
-                <li class="navbar-brand">
-                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
-                        <i class="fa fa-bars"></i>
-                        <span class="sr-only">Toggle Menu</span>
-                    </button>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">FAQs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Log out</a>
-                </li>
-            </ul>*@
+                    <li class="navbar-brand">
+                        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                            <i class="fa fa-bars"></i>
+                            <span class="sr-only">Toggle Menu</span>
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">FAQs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Log out</a>
+                    </li>
+                </ul>*@
             <!-- Page Content  -->
-            <div class="container">
+            <div class="pre-scrollable container-body">
                 @RenderBody()
             </div>
         </div>
     </div>
     <script src="~/wwwroot/js/jquery.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/wwwroot/js/popper.js"></script>
     <script src="~/wwwroot/js/bootstrap.min.js"></script>
     <script src="~/wwwroot/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    @*<script src="https://kendo.cdn.telerik.com/2017.1.223/js/jquery.min.js"></script>*@
+    <script src="https://kendo.cdn.telerik.com/2017.1.223/js/kendo.all.min.js"></script>
+
+
 </body>
+
+
 </html>

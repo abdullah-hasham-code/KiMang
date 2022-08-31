@@ -1,135 +1,150 @@
 ﻿@model IEnumerable<KiMang.EMPLOYEE>
 
-@{
-    ViewBag.Title = "List";
-}
+@{ ViewBag.Title = "List"; }
 
 
-<div class="container" style="background-color:white">
-    <div class="row justify-content-end" style="margin-top:20px; margin-right:5px">
-        <button class="btn btn-success  col-1" onclick="location.href='@Url.Action("Create","Teacher")'">New</button>
-        <button class="btn btn-danger col-1" style="margin-left:5px">Delete</button>
+<div class="container">
+    <div class="col-10" style="margin-left:84%; margin-top:10px">
+        <button class="btn btn-success  col-1" onclick="location.href='@Url.Action("Create", "Student")'">New</button>
+        <input name="Submit" id="Delete" value="Delete" type="submit" style="margin-left:5px" class="btn btn-danger col-1" />
     </div>
-    <div class="row" style="width: 100%; margin-top: 20px; overflow-x:auto;">
-        <table class="table table-striped col-8" style="text-align:center">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.NAME)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.GRADE)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.QUALIFICATION)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.SUBJECT_OF_TEACHING)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.PHONE)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ADDRESS)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.JOINING_DATE)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.IS_ACTIVE)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.PWD)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DATE_OF_BIRTH)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.LEAVES)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.PIC)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.PWD)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DEPARTMENT.Dept_Desc)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DESIGNATION.DESIGNATION_Desc)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.HRMS_EMPLOYEE.Working_Days)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.HRMS_Managed.Name)
-                    </th>
-                    <th></th>
-                </tr>
 
+
+
+    <div style="padding-top:20px">
+        @Html.Partial("~/Views/Filter/Filter.cshtml")
+    </div>
+
+    <div class="box">
+        @*<div class="row" style="margin-left:10px">
+                *<h5 class="col-3">STUDENT STATUS</h5>
+                <button class="btn btn-success col-2" style="margin:5px">COMPLETE</button>
+                <button class="btn btn-danger col-1" style="margin:5px">LEFT</button>
+                <button class="btn btn-secondary col-1" style="margin:5px">JOIN</button>
+                <button class="btn btn-info col-2" style="margin:5px">READM</button>
+            </div>*@
+        <div class="row" style="width: 100%; margin-top: 20px; overflow-x:auto;">
+            <table class="table table-striped col-8" style="text-align:center">
+                <thead style="background-color:darkgray">
+                   
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NAME)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.GRADE)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.QUALIFICATION)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SUBJECT_OF_TEACHING)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PHONE)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ADDRESS)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.JOINING_DATE)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IS_ACTIVE)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PWD)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DATE_OF_BIRTH)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LEAVES)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PIC)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PWD)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DEPARTMENT.Dept_Desc)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DESIGNATION.DESIGNATION_Desc)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.HRMS_EMPLOYEE.Working_Days)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.HRMS_Managed.Name)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NAME)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.GRADE)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.QUALIFICATION)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.SUBJECT_OF_TEACHING)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PHONE)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ADDRESS)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.JOINING_DATE)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IS_ACTIVE)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PWD)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DATE_OF_BIRTH)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.LEAVES)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PIC)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PWD)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DEPARTMENT.Dept_Desc)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DESIGNATION.DESIGNATION_Desc)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.HRMS_EMPLOYEE.Working_Days)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.HRMS_Managed.Name)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.EMPLOYEE_ID }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.EMPLOYEE_ID }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.EMPLOYEE_ID })
-                        </td>
-                    </tr>
-                }
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GRADE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QUALIFICATION)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SUBJECT_OF_TEACHING)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PHONE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ADDRESS)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JOINING_DATE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IS_ACTIVE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PWD)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DATE_OF_BIRTH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LEAVES)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PIC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PWD)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DEPARTMENT.Dept_Desc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DESIGNATION.DESIGNATION_Desc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HRMS_EMPLOYEE.Working_Days)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HRMS_Managed.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.EMPLOYEE_ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.EMPLOYEE_ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.EMPLOYEE_ID })
+                </td>
+            </tr>
+}
 
-        </table>
+            </table>
+        </div>
     </div>
 </div>
